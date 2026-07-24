@@ -6,7 +6,7 @@ project:
 website:
   title: "My Research Profile"
   navbar:
-    search: false
+    search: true
     right:
       - icon: house-fill
         text: "Home"
@@ -16,7 +16,7 @@ website:
         href: projects.qmd
       - icon: github
         text: "GitHub"
-        href: https://github.com
+        href: https://github.com/ramireznataliaok 
 
 format:
   html:

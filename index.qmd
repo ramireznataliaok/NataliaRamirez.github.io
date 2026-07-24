@@ -1,5 +1,5 @@
 ---
-title: "Your Name"
+title: "Natalia Ramirez-Sotelo"
 toc: false
 image: "your photo.jpg"
 about:
@@ -8,7 +8,7 @@ about:
   - text: GitHub
     href: link
   - text: email
-    href:  link
+    href: link
 ---
 
 ::: {.columnpage}
@@ -21,14 +21,14 @@ Welcome to my research profile website. I'm a student in the Intro to Reproducib
 
 Replace this section with information about yourself:
 
-- **Name:** Your Name Here
-- **Institution:** Your University
-- **Research Interests:** Add your research interests here
-- **Email:** your.email@university.edu
+- **Name:** Natalia Ramirez-Sotelo
+- **Institution:** The University of Oklahoma Health Campus
+- **Research Interests:** Cancer Immunology
+- **Email:** erica-ramirezsotelo@ou.edu
 
 ## My Research
 
-I'm interested in understanding [your topic area]. Through this course, I've learned how to:
+I'm interested in understanding cancer immunology. Through this course, I've learned how to:
 
 - Use R for data analysis
 - Create reproducible research workflows
