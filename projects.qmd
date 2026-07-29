@@ -2,10 +2,6 @@
 title: "Projects"
 ---
 
-# My Projects
-
-Here are my research projects and work:
-
 ## Final Report
 
 My final project for CELL 6351 - Intro to Reproducible Data Analysis Using R.
