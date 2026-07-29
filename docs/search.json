@@ -107,37 +107,37 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Natalia Ramirez-Sotelo",
+    "title": "Natalia Ramirez-Sotelo, BS",
     "section": "",
-    "text": "Welcome to my research profile website. I’m a student in the Intro to Reproducible Data Analysis Using R course.\n\n\nReplace this section with information about yourself:\n\nName: Natalia Ramirez-Sotelo\nInstitution: The University of Oklahoma Health Campus\nResearch Interests: Cancer Immunology\nEmail: erica-ramirezsotelo@ou.edu\n\n\n\n\nI’m interested in understanding cancer immunology. Through this course, I’ve learned how to:\n\nUse R for data analysis\nCreate reproducible research workflows\nBuild websites to share my work\nManage my research projects with Git and GitHub\n\n\n\n\nThis site showcases my research and projects. Check out my Projects page to see my final report and other work!\nAs my research progresses, I’ll continue adding:\n\nPublications\nConference posters\nNew analyses and projects\nAdditional resources\n\n\nKeep exploring! Navigate using the menu above."
+    "text": "My name is Natalia Ramirez-Sotelo. Welcome to my research profile website! I’m a second year PhD student in the Intro to Reproducible Data Analysis Using R course at The University of Oklahoma Health Campus.\n\n\nI obtained my bachelor’s degree at Oral Roberts University, majoring in Biology with a minor in Biochemistry. At my undergraduate institution, I worked as a research assistant where I investigated the selective toxicity of medicinal mushroom secretions against glioblastoma cancer cells, discovering the capabilities of the secretions to selectively reduce glioblastoma cell viability. I also served as president of my school’s research chapter, Tribeta Mu Kappa. Another significant research experience of mine was conducted at the Mount Sinai research hospital in New York City. At my Mount Sinai internship, my work centered on the development of a humanized mouse model for the study of B-cell acute lymphoblastic leukemia. My life-long fascination with cellular and molecular biology has led me to decide to pursue a PhD in cancer biology. With a love for teaching and mentoring, I also hope to be a professor and impact the next generation of students. Outside of the lab, I enjoy long-distance running, thrift shopping, and exploring new restaurants with friends.\n\n\n\nI’m interested in understanding cancer immunology and the tumor immune microenvironment. My work centers on elucidating the interactions between different immune cells (such as mast cells or natural killer cells) and pancreatic adenocarcinoma (PDAC), which could potentially reveal new therapeutic strategies. Through this course, I’ve learned how to use R for data analysis, and I hope to utilize this knowledge in future research projects!\n\n\n\nThis site showcases my research and projects. Check out my Projects page to see my final report!\n\nKeep exploring! Navigate using the menu above."
   },
   {
     "objectID": "index.html#about-me",
     "href": "index.html#about-me",
-    "title": "Natalia Ramirez-Sotelo",
+    "title": "Natalia Ramirez-Sotelo, BS",
     "section": "",
-    "text": "Replace this section with information about yourself:\n\nName: Natalia Ramirez-Sotelo\nInstitution: The University of Oklahoma Health Campus\nResearch Interests: Cancer Immunology\nEmail: erica-ramirezsotelo@ou.edu"
+    "text": "I obtained my bachelor’s degree at Oral Roberts University, majoring in Biology with a minor in Biochemistry. At my undergraduate institution, I worked as a research assistant where I investigated the selective toxicity of medicinal mushroom secretions against glioblastoma cancer cells, discovering the capabilities of the secretions to selectively reduce glioblastoma cell viability. I also served as president of my school’s research chapter, Tribeta Mu Kappa. Another significant research experience of mine was conducted at the Mount Sinai research hospital in New York City. At my Mount Sinai internship, my work centered on the development of a humanized mouse model for the study of B-cell acute lymphoblastic leukemia. My life-long fascination with cellular and molecular biology has led me to decide to pursue a PhD in cancer biology. With a love for teaching and mentoring, I also hope to be a professor and impact the next generation of students. Outside of the lab, I enjoy long-distance running, thrift shopping, and exploring new restaurants with friends."
   },
   {
     "objectID": "index.html#my-research",
     "href": "index.html#my-research",
-    "title": "Natalia Ramirez-Sotelo",
+    "title": "Natalia Ramirez-Sotelo, BS",
     "section": "",
-    "text": "I’m interested in understanding cancer immunology. Through this course, I’ve learned how to:\n\nUse R for data analysis\nCreate reproducible research workflows\nBuild websites to share my work\nManage my research projects with Git and GitHub"
+    "text": "I’m interested in understanding cancer immunology and the tumor immune microenvironment. My work centers on elucidating the interactions between different immune cells (such as mast cells or natural killer cells) and pancreatic adenocarcinoma (PDAC), which could potentially reveal new therapeutic strategies. Through this course, I’ve learned how to use R for data analysis, and I hope to utilize this knowledge in future research projects!"
   },
   {
     "objectID": "index.html#this-website",
     "href": "index.html#this-website",
-    "title": "Natalia Ramirez-Sotelo",
+    "title": "Natalia Ramirez-Sotelo, BS",
     "section": "",
-    "text": "This site showcases my research and projects. Check out my Projects page to see my final report and other work!\nAs my research progresses, I’ll continue adding:\n\nPublications\nConference posters\nNew analyses and projects\nAdditional resources\n\n\nKeep exploring! Navigate using the menu above."
+    "text": "This site showcases my research and projects. Check out my Projects page to see my final report!\n\nKeep exploring! Navigate using the menu above."
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Here are my research projects and work:\n\n\nMy final project for CELL 6351 - Intro to Reproducible Data Analysis Using R.\nView Final Report →\n\n\n\n\nAs you continue your research journey, you can add more pages here! For example:\n\nConference posters\nPublications\nData visualizations\nAnalysis write-ups\nProject proposals\n\nTo add a new project:\n\nCreate a new .qmd file in the projects/ folder\nAdd a link to it on this page\nPush to GitHub and your site updates automatically!"
+    "text": "Here are my research projects and work:\n\n\nMy final project for CELL 6351 - Intro to Reproducible Data Analysis Using R.\nView Final Report →"
   },
   {
     "objectID": "projects.html#final-report",
