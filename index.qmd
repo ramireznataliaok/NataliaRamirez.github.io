@@ -23,7 +23,7 @@ I obtained my bachelor's degree at Oral Roberts University, majoring in Biology 
 
 ## My Research
 
-I'm interested in understanding cancer immunology and the tumor immune microenvironment. My work centers on elucidating the interactions between different immune cells (such as mast cells or natural killer cells) and pancreatic adenocarcinoma (PDAC), which could potentially reveal new therapeutic strategies. Through this course, I've learned how to use R for data analysis, and I hope to utilize this knowledge in future research projects!
+I am a member of the Mehla Lab in the Oncology Sciences department at OUHC, and I am interested in understanding cancer immunology and the tumor immune microenvironment. My work centers on elucidating the interactions between different immune cells (such as mast cells or natural killer cells) and pancreatic adenocarcinoma (PDAC), which could potentially reveal new therapeutic strategies. Through this course, I've learned how to use R for data analysis, and I hope to utilize this knowledge in future research projects!
 
 ## This Website
 
