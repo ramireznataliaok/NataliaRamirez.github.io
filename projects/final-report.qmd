@@ -124,35 +124,6 @@ boxplot(
 #| message: false
 #| warning: false
 #| eval: false
-#| label: pca-analysis
-
-# PCA requires samples as rows and probes as columns
-pca_result <- prcomp(
-  t(expression_matrix),
-  center = TRUE,
-  scale. = FALSE
-)
-
-# Calculate the percentage of variance explained by each component
-percent_variance <- round(
-  100 * pca_result$sdev^2 / sum(pca_result$sdev^2),
-  1
-)
-
-# Build a plotting data frame
-pca_data <- data.frame(
-  sample = rownames(pca_result$x),
-  PC1 = pca_result$x[, 1],
-  PC2 = pca_result$x[, 2],
-  cell_type = sample_metadata$cell_type,
-  replicate = sample_metadata$replicate
-)
-```
-
-```{r}
-#| message: false
-#| warning: false
-#| eval: false
 #| label: pca-plot
 #| fig-cap: "Principal component analysis of GSE11414. Each point represents one sample."
 #| fig-width: 8
@@ -551,14 +522,9 @@ pheatmap(
 ```
 
 
-
-## Discussion
-
-What do your results mean? How do they relate to your research question? What limitations exist? What would you do next?
-
 ## Conclusions
 
-Summarize your findings and their implications.
+This dataset reveals the most differentially expressed genes in osteosarcoma cell lines U2OS and MG63 as compared to normal human osteoblasts (HOB). Future directions for this experiment would include pathway analysis in which not only changes in gene expression, but alterations in biological pathways are also studied. This would reveal which pathways osteosarcoma becomes more dependent on in a cell line model. 
 
 ## References
 
@@ -566,4 +532,4 @@ Add any references to papers, data sources, or resources you used.
 
 ---
 
-**Last updated:** June 2026
+**Last updated:** July 2026
