@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Natalia Ramirez-Sotelo">
-<meta name="dcterms.date" content="2026-06-04">
+<meta name="dcterms.date" content="2026-07-29">
 
-<title>Final Report: [Differential Gene Analysis of Osteosarcoma] – My Research Profile</title>
+<title>Final Report: Differential Gene Analysis of Osteosarcoma – My Research Profile</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -160,11 +160,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#final-report-your-project-title" id="toc-final-report-your-project-title" class="nav-link active" data-scroll-target="#final-report-your-project-title">Final Report: [Your Project Title]</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a>
   <ul class="collapse">
   <li><a href="#example-code-block" id="toc-example-code-block" class="nav-link" data-scroll-target="#example-code-block">Example Code Block</a></li>
   <li><a href="#example-table" id="toc-example-table" class="nav-link" data-scroll-target="#example-table">Example Table</a></li>
@@ -172,7 +170,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -181,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Final Report: [Differential Gene Analysis of Osteosarcoma]</h1>
+<h1 class="title">Final Report: Differential Gene Analysis of Osteosarcoma</h1>
 </div>
 
 
@@ -198,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 4, 2026</p>
+      <p class="date">July 29, 2026</p>
     </div>
   </div>
   
@@ -210,18 +207,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="final-report-your-project-title" class="level1">
-<h1>Final Report: [Your Project Title]</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Replace this with an introduction to your research question or project. What are you investigating? Why does it matter?</p>
+<p>Osteosarcoma is the most common primary bone tumor malignancy and demonstrates a high risk of metastasis and recurrence after therapy. It presents itself in a bimodal distribution as it is commonly observed in individuals under 25 years of age or individuals over 65 years of age. Its occurrence in young adults is mainly due to the rapid bone growth of adolescence which predisposes the individual to cancerous development. In the elderly, osteosarcoma more commonly manifests itself as a secondary malignancy to Paget disease or irradiation.</p>
+<p>Osteosarcoma subtypes are characterized by degree of differentiation, histology, and location within the bone. The most common subtype of osteosarcoma is the intramedullary osteosarcoma which is both complex and aggressive. The most common symptom is bone pain, initially, as it is caused by activity, but as disease progresses, pain persists throughout rest. Treatment includes excision of tumor, chemotherapy, and radiation therapy. Despite the availability of treatments, patient survival rates remain low.</p>
+<p>The etiology of osteosarcoma is currently under investigation and believed to be the result of genetic predisposition. Some of the primary mutations include: germline mutations in the RB1 gene which cause hereditary retinoblastoma, germline mutations in the TP53 tumor suppressor gene which cause Li-Fraumeni syndrome, and autosomal recessive mutations of the RECQL4 gene which cause Rothmund-Thompson syndrome. Development of any of these syndromes leads to increased risk of osteosarcoma. Although some genetic mutations have been characterized, the identification of changes in gene expression that lead to osteosarcoma would provide potential insight as to novel therapeutic strategies. Hence, this study aimed to perform a genome wide comparison of gene expression to identify genes that are differentially expressed in osteosarcoma cell lines (U2OS and MG63) as compared to normal human osteoblasts (HOB). The goal of this analysis is to visualize the data generated by this study using code generated in R.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Describe how you conducted your analysis. What data did you use? What analyses did you perform?</p>
+<p>This study characterized the gene expression profile of osteosarcoma cell lines U2OS and MG63 as well as normal human osteoblasts (HOB). A combination of technologies were used to generate epigenomic, genomic, and gene expression profiles. For this R analysis, however, a txt file was obtained from this study’s Affymetrix Gene 1.0 platform microarray experiment. Gene expression profiling by microarray consists of a glass slide or silicon chip that contains thousands of DNA probes. These DNA probes are designed to be complimentary to mRNA or cDNA gene sequences of a sample of choice. The mRNA or cDNA of the sample will hybridize to the oligonucleotide probes. As these samples hybridize to their complementary sequence, they will cause the probe to release a signal. The more signal generated by the probe, the higher the abundance of that particular transcript. In this manner, signal intensity can dictate a quantitative measure of gene expression.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../Screenshot 2026-07-30 002128.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Microarray workflow: Staudt, Louis &amp; Brown, Patrick. (2000). Genomic Views of the Immune System. Annual Review of Immunology. 18. 829-859. 10.1146/annurev.immunol.18.1.829.</figcaption>
+</figure>
+</div>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
 <p>Share your findings here. You can include:</p>
 <ul>
 <li>Text explanations</li>
@@ -234,16 +237,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s a sample R code block:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a library</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.6.1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -293,7 +298,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Last updated:</strong> June 2026</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

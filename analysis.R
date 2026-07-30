@@ -595,3 +595,63 @@ write.csv(
   "Data/U2OS_vs_HOB_significant_annotated.csv",
   row.names = FALSE
 )
+
+# Heatmap
+# Identify top 50 most statistically significant probes
+top50 <- annotated_MG63[
+  !is.na(annotated_MG63$SYMBOL) &
+    annotated_MG63$SYMBOL != "",
+]
+
+top50 <- head(top50, 50)
+
+head(top50[, c("SYMBOL", "logFC", "adj.P.Val")])
+
+# Identify rows corresponding to top 50 genes
+heatmap_data <- expression_matrix[top50$Probe_ID, ]
+dim(heatmap_data)
+
+# Give the rows gene names
+rownames(heatmap_data) <- top50$SYMBOL
+head(heatmap_data)
+
+# Standarize each gene
+heatmap_scaled <- t(scale(t(heatmap_data)))
+
+# Tell heatmap which samples belong together
+annotation_col <- data.frame(
+  CellType = sample_metadata$cell_type
+)
+
+rownames(annotation_col) <- colnames(heatmap_scaled)
+
+# Make the heatmap
+library(pheatmap)
+
+pheatmap(
+  heatmap_scaled,
+  annotation_col = annotation_col,
+  show_rownames = TRUE,
+  show_colnames = TRUE,
+  cluster_rows = TRUE,
+  cluster_cols = TRUE,
+  fontsize_row = 8,
+  main = "Top 50 Differentially Expressed Genes"
+)
+
+# Save heatmap
+pheatmap(
+  heatmap_scaled,
+  annotation_col = annotation_col,
+  show_rownames = TRUE,
+  show_colnames = TRUE,
+  cluster_rows = TRUE,
+  cluster_cols = TRUE,
+  fontsize_row = 8,
+  main = "Top 50 Differentially Expressed Genes",
+  filename = "Figures/Heatmap_Top50_MG63_vs_HOB.png",
+  width = 8,
+  height = 9
+)
+
+
