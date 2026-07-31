@@ -44,7 +44,6 @@ library(hugene10sttranscriptcluster.db)
 ```{r}
 #| message: false
 #| warning: false
-#| eval: false
 #| label: import-expression-data
 
 file_path <- "Data/GSE11414_series_matrix.txt.gz"
@@ -68,7 +67,19 @@ expression_data <- read.delim(
 
 # Display the dimensions of the imported table
 dim(expression_data)
+(head(expression_data))
+
 ```
+
+```text
+ID_REF	GSM288005	GSM288006	GSM288007	GSM288008	GSM288009	GSM288010
+7892501	6.16853	5.43825	7.34280	7.28333	6.86265	5.55112
+7892502	4.47048	4.50073	4.97202	5.27214	5.49168	6.15660
+7892503	3.60062	4.47687	4.00139	4.99575	2.67940	3.31075
+7892504	10.59850	10.37850	10.02410	10.12660	10.09570	10.30910
+7892505	3.33995	3.48976	2.65829	3.62730	4.82059	4.19196
+7892506	4.08223	4.47190	3.39704	5.19347	4.98825	5.22563
+``` 
 
 ### Step 3: Prepare the expression matrix and sample metadata
 
