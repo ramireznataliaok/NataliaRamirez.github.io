@@ -41,6 +41,8 @@ library(hugene10sttranscriptcluster.db)
 
 ### Step 2: Import the GEO expression matrix
 
+The GEO series-matrix file contains both descriptive metadata and the expression table. The code below allows R to identify the beginning and the end of the expression table to only utilize that data. Only the tabular expression values are imported for analysis.
+
 ```{r}
 #| message: false
 #| warning: false
@@ -68,11 +70,13 @@ expression_data <- read.delim(
 
 # Display the dimensions of the imported table
 dim(expression_data)
-(head(expression_data))
+head(expression_data)
 
 ```
 
 ```text
+[1] 33297     6
+
 ID_REF	GSM288005	GSM288006	GSM288007	GSM288008	GSM288009	GSM288010
 7892501	6.16853	5.43825	7.34280	7.28333	6.86265	5.55112
 7892502	4.47048	4.50073	4.97202	5.27214	5.49168	6.15660
@@ -83,6 +87,8 @@ ID_REF	GSM288005	GSM288006	GSM288007	GSM288008	GSM288009	GSM288010
 ``` 
 
 ### Step 3: Prepare the expression matrix and sample metadata
+
+Now the expression matrix must be prepared for further analysis. In order to prepare the data, the microarray probe IDs are moved into the row names. The remaining values are converted into a numeric expression matrix. This will then be used for the PCA plot and downstream differential expression analysis.
 
 ```{r}
 #| message: false
@@ -124,6 +130,8 @@ sample_metadata
 
 ### Step 4: Quality Assessment
 
+Before performing the PCA and differential expression analysis, we generate a boxplot of the normalized expression values for each sample. This boxplot serves as a quality assessment step. Before comparing genes between groups, we ensure that the samples themselves are comparable. Each box represents one of the six experimental samples: HOB (normal osteoblasts), MG63(osteosarcoma), or U2OS (osteosarcoma). Within each box are the expression values for every probe on that microarray. For this graph, we hope to see similar overall expression distribution and no prominent outliers. This would indicate a successful normalization. 
+
 ```{r}
 #| message: false
 #| warning: false
@@ -145,6 +153,8 @@ boxplot(
 
 
 ### Step 5: Principal Component Analysis
+
+The principal component analysis plot (PCA) is a graph that uses linear algebra to find directions of maximum variance. It assumes that relationships between experimental groups can be described using straight lines. This analytical method is known as linear dimensionality reduction. The end result is a graph that has experimental groups that are similar to one another clustered together and experimental groups that are different from one another spread apart. 
 
 
 ```{r}
@@ -179,7 +189,10 @@ pca_plot
 ```
 
 ![](../Figures/PCA_plot.png)
+
 ### Step 6: Differential expression analysis with limma
+
+Limma, Linear Models for Microarray Data, is the Bioconductor package most well suited for analysis of both microarray and RNA-seq data. Limma identifies differentially expressed genes by fitting a linear model to each microarray probe. Because of the small number of replicates, empirical Bayes moderation is used to improve variance estimation.
 
 ```{r}
 #| message: false
@@ -220,6 +233,8 @@ fit2 <- eBayes(fit2)
 
 
 ### Step 7: Annotate probes with gene information
+
+We map Affymetrix probe IDs to gene symbols or gene names using the Human Gene 1.0 ST annotation package. Using "multiVals= 'first'" keeps one annotation per probe, preventing mapping of multiple genes to a single probe.
 
 ```{r}
 #| message: false
@@ -460,10 +475,10 @@ This dataset reveals the most differentially expressed genes in osteosarcoma cel
 
 ## References
 
-1. Staudt L, Brown P. 2000. Genomic Views of the Immune System. Annual Review of Immunology. 18:829–859. https://doi.org/10.1146/annurev.immunol.18.1.829
+1.Cersosimo F et al. 2020. Tumor-Associated Macrophages in Osteosarcoma: From Mechanisms to Therapy. Int J Mol Sci. 21(15):5207. https://doi.org/10.3390/ijms21155207 
 2. GEO Accession viewer. [accessed 2026 July 31]. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11414
 3. Sadikovic B et al. 2008. In Vitro Analysis of Integrated Global High-Resolution DNA Methylation Profiling with Genomic Imbalance and Gene Expression in Osteosarcoma. PLOS ONE. 3(7):e2834. https://doi.org/10.1371/journal.pone.0002834
-4. Cersosimo F et al. 2020. Tumor-Associated Macrophages in Osteosarcoma: From Mechanisms to Therapy. Int J Mol Sci. 21(15):5207. https://doi.org/10.3390/ijms21155207
+4. Staudt L, Brown P. 2000. Genomic Views of the Immune System. Annual Review of Immunology. 18:829–859. https://doi.org/10.1146/annurev.immunol.18.1.829
 
 
 ---

@@ -169,6 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-3-prepare-the-expression-matrix-and-sample-metadata" id="toc-step-3-prepare-the-expression-matrix-and-sample-metadata" class="nav-link" data-scroll-target="#step-3-prepare-the-expression-matrix-and-sample-metadata">Step 3: Prepare the expression matrix and sample metadata</a></li>
   <li><a href="#step-4-quality-assessment" id="toc-step-4-quality-assessment" class="nav-link" data-scroll-target="#step-4-quality-assessment">Step 4: Quality Assessment</a></li>
   <li><a href="#step-5-principal-component-analysis" id="toc-step-5-principal-component-analysis" class="nav-link" data-scroll-target="#step-5-principal-component-analysis">Step 5: Principal Component Analysis</a></li>
+  <li><a href="#step-6-differential-expression-analysis-with-limma" id="toc-step-6-differential-expression-analysis-with-limma" class="nav-link" data-scroll-target="#step-6-differential-expression-analysis-with-limma">Step 6: Differential expression analysis with limma</a></li>
   <li><a href="#step-7-annotate-probes-with-gene-information" id="toc-step-7-annotate-probes-with-gene-information" class="nav-link" data-scroll-target="#step-7-annotate-probes-with-gene-information">Step 7: Annotate probes with gene information</a></li>
   <li><a href="#step-8-volcano-plots" id="toc-step-8-volcano-plots" class="nav-link" data-scroll-target="#step-8-volcano-plots">Step 8: Volcano plots</a></li>
   <li><a href="#step-9-heatmap-of-top-50-differentially-expressed-genes" id="toc-step-9-heatmap-of-top-50-differentially-expressed-genes" class="nav-link" data-scroll-target="#step-9-heatmap-of-top-50-differentially-expressed-genes">Step 9: Heatmap of top 50 differentially expressed genes</a></li>
@@ -245,6 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-2-import-the-geo-expression-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-import-the-geo-expression-matrix">Step 2: Import the GEO expression matrix</h3>
+<p>The GEO series-matrix file contains both descriptive metadata and the expression table. The code below allows R to identify the beginning and the end of the expression table to only utilize that data. Only the tabular expression values are imported for analysis.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"Data/GSE11414_series_matrix.txt.gz"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -267,9 +269,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the dimensions of the imported table</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(expression_data)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(<span class="fu">head</span>(expression_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(expression_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre class="text"><code>ID_REF  GSM288005   GSM288006   GSM288007   GSM288008   GSM288009   GSM288010
+<pre class="text"><code>[1] 33297     6
+
+ID_REF  GSM288005   GSM288006   GSM288007   GSM288008   GSM288009   GSM288010
 7892501 6.16853 5.43825 7.34280 7.28333 6.86265 5.55112
 7892502 4.47048 4.50073 4.97202 5.27214 5.49168 6.15660
 7892503 3.60062 4.47687 4.00139 4.99575 2.67940 3.31075
@@ -279,6 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-3-prepare-the-expression-matrix-and-sample-metadata" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-prepare-the-expression-matrix-and-sample-metadata">Step 3: Prepare the expression matrix and sample metadata</h3>
+<p>Now the expression matrix must be prepared for further analysis. In order to prepare the data, the microarray probe IDs are moved into the row names. The remaining values are converted into a numeric expression matrix. This will then be used for the PCA plot and downstream differential expression analysis.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use probe IDs as row names</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(expression_data) <span class="ot">&lt;-</span> expression_data<span class="sc">$</span>ID_REF</span>
@@ -311,6 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-4-quality-assessment" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-quality-assessment">Step 4: Quality Assessment</h3>
+<p>Before performing the PCA and differential expression analysis, we generate a boxplot of the normalized expression values for each sample. This boxplot serves as a quality assessment step. Before comparing genes between groups, we ensure that the samples themselves are comparable. Each box represents one of the six experimental samples: HOB (normal osteoblasts), MG63(osteosarcoma), or U2OS (osteosarcoma). Within each box are the expression values for every probe on that microarray. For this graph, we hope to see similar overall expression distribution and no prominent outliers. This would indicate a successful normalization.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  expression_matrix,</span>
@@ -323,6 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-5-principal-component-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-principal-component-analysis">Step 5: Principal Component Analysis</h3>
+<p>The principal component analysis plot (PCA) is a graph that uses linear algebra to find directions of maximum variance. It assumes that relationships between experimental groups can be described using straight lines. This analytical method is known as linear dimensionality reduction. The end result is a graph that has experimental groups that are similar to one another clustered together and experimental groups that are different from one another spread apart.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  pca_data,</span>
@@ -345,7 +352,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>pca_plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><img src="../Figures/PCA_plot.png" class="img-fluid"> ### Step 6: Differential expression analysis with limma</p>
+<p><img src="../Figures/PCA_plot.png" class="img-fluid"></p>
+</section>
+<section id="step-6-differential-expression-analysis-with-limma" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-differential-expression-analysis-with-limma">Step 6: Differential expression analysis with limma</h3>
+<p>Limma, Linear Models for Microarray Data, is the Bioconductor package most well suited for analysis of both microarray and RNA-seq data. Limma identifies differentially expressed genes by fitting a linear model to each microarray probe. Because of the small number of replicates, empirical Bayes moderation is used to improve variance estimation.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm that metadata and expression columns use the same sample order</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
@@ -380,6 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-7-annotate-probes-with-gene-information" class="level3">
 <h3 class="anchored" data-anchor-id="step-7-annotate-probes-with-gene-information">Step 7: Annotate probes with gene information</h3>
+<p>We map Affymetrix probe IDs to gene symbols or gene names using the Human Gene 1.0 ST annotation package. Using “multiVals= ‘first’” keeps one annotation per probe, preventing mapping of multiple genes to a single probe.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate MG63-versus-HOB results</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>results_MG63<span class="sc">$</span>SYMBOL <span class="ot">&lt;-</span> <span class="fu">mapIds</span>(</span>
@@ -574,12 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<ol type="1">
-<li>Staudt L, Brown P. 2000. Genomic Views of the Immune System. Annual Review of Immunology. 18:829–859. https://doi.org/10.1146/annurev.immunol.18.1.829</li>
-<li>GEO Accession viewer. [accessed 2026 July 31]. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11414</li>
-<li>Sadikovic B et al.&nbsp;2008. In Vitro Analysis of Integrated Global High-Resolution DNA Methylation Profiling with Genomic Imbalance and Gene Expression in Osteosarcoma. PLOS ONE. 3(7):e2834. https://doi.org/10.1371/journal.pone.0002834</li>
-<li>Cersosimo F et al.&nbsp;2020. Tumor-Associated Macrophages in Osteosarcoma: From Mechanisms to Therapy. Int J Mol Sci. 21(15):5207. https://doi.org/10.3390/ijms21155207</li>
-</ol>
+<p>1.Cersosimo F et al.&nbsp;2020. Tumor-Associated Macrophages in Osteosarcoma: From Mechanisms to Therapy. Int J Mol Sci. 21(15):5207. https://doi.org/10.3390/ijms21155207 2. GEO Accession viewer. [accessed 2026 July 31]. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11414 3. Sadikovic B et al.&nbsp;2008. In Vitro Analysis of Integrated Global High-Resolution DNA Methylation Profiling with Genomic Imbalance and Gene Expression in Osteosarcoma. PLOS ONE. 3(7):e2834. https://doi.org/10.1371/journal.pone.0002834 4. Staudt L, Brown P. 2000. Genomic Views of the Immune System. Annual Review of Immunology. 18:829–859. https://doi.org/10.1146/annurev.immunol.18.1.829</p>
 <hr>
 <p><strong>Last updated:</strong> July 2026</p>
 
